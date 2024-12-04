@@ -6,9 +6,17 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import './global.css';
 import { images } from '../constants';
 import CustomButton from "../components/CustomButton";
+import { useGlobalContext } from "../context/GlobalProvider";
 
 // This is the entry point of the application
 export default function App() {
+    const {isLoading, isLoggedIn} = useGlobalContext();
+
+    // Redirect to home if user is logged in
+    if(!isLoading && isLoggedIn) {
+        return <Redirect href="/home" />
+    }
+
     return (
         // SafeAreaView to ensure UI elements are safe from overlapping with notches and system bars
         <SafeAreaView className="bg-primary h-full">
