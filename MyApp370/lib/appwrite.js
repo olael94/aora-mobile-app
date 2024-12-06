@@ -10,6 +10,17 @@ export const config = {
     storageId: '674a478f0010472075e2'
 }
 
+// Destructure the config object to expose them outside the object
+const {
+    endpoint,
+    platform,
+    projectId,
+    databaseId,
+    userCollectionId,
+    videoCollectionId,
+    storageId,
+} = config;
+
 // Init your React Native SDK
 const client = new Client();
 
@@ -85,5 +96,18 @@ export const getCurrentUser = async () => {
         return currentUser.documents[0];
     } catch (error) {
         console.log(error);
+    }
+}
+
+export const getAllPosts = async () => {
+    try {
+        const posts = await databases.listDocuments(
+            databaseId,
+            videoCollectionId
+        );
+
+        return posts.documents;
+    } catch (error) {
+        throw new Error(error);
     }
 }
