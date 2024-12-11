@@ -25,7 +25,7 @@ const {
 const client = new Client();
 
 client
-    .setEndpoint(config.endpoint) // Your Appwrite Endpoint
+    .setEndpoint(config.endpoint) // Your AppWrite Endpoint
     .setProject(config.projectId) // Your project ID
     .setPlatform(config.platform) // Your application ID or bundle ID.
 
@@ -118,6 +118,21 @@ export const getLatestPosts = async () => {
             databaseId,
             videoCollectionId,
             [Query.orderDesc('$createdAt'), Query.limit(7)]
+        );
+
+        return posts.documents;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+export const searchPosts = async (query) => {
+    // Search for posts with the query in the title
+    try {
+        const posts = await databases.listDocuments(
+            databaseId,
+            videoCollectionId,
+            [Query.search('title', query)]
         );
 
         return posts.documents;
