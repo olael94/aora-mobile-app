@@ -36,10 +36,14 @@ const TrendingItem = ({activeItem, item}) => {
     })
 
 
+
     // Set up the event listener for the 'statusChange' event
-    useEventListener(player, 'playingChange', ({status, error}) => {
-        //setPlay(false)
+    useEventListener(player, 'onStatusChange', ({status, error}) => {
+        if(!status.isPlaying){
+            setPlay(false);
+        }
     });
+
 
 
 
