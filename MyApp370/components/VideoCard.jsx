@@ -1,11 +1,28 @@
-import {View, Text, Image, TouchableOpacity} from 'react-native'
+import {View, Text, Image, TouchableOpacity, Dimensions} from 'react-native'
 import React, {useState} from 'react'
 
 import {icons} from '../constants'
+import {useVideoPlayer, VideoView} from "expo-video";
+import {useEventListener} from "expo";
+import {ResizeMode, Video} from "expo-av";
+
 
 const VideoCard = ({video: {title, thumbnail, video, creator: {username, avatar}}}) => {
     //This state will be used to play the video
     const [play, setPlay] = useState(false)
+
+    //This Implements the video player with expo-video
+    const player = useVideoPlayer(video, (player) => {
+        //player.play();
+        player.staysActiveInBackground = true;
+        player.showNowPlayingNotification = true
+    })
+
+
+    // Set up the event listener for the 'statusChange' event
+    useEventListener(player, 'playingChange', ({status, error}) => {
+        //setPlay(false)
+    });
 
     return (
         <View className="floex-col items-center px-4 mb-14">
@@ -40,7 +57,34 @@ const VideoCard = ({video: {title, thumbnail, video, creator: {username, avatar}
             </View>
             {/*If play is true, show the video playing, else show the thumbnail*/}
             {play ? (
-                <Text className="text-white">Playing</Text>
+
+                //This Implements the video player with expo-video
+                <VideoView
+                    player={player} // Pass player instance
+                    style={{width: Dimensions.get('window').width, height: 248, borderRadius: 15, marginTop: 3, backgroundColor: 'black'}}
+                    contentFit="contain"
+                    allowsFullscreen={true}
+                    allowsPictureInPicture={true}
+                    startsPictureInPictureAutomatically={true}
+                    nativeControls={true}
+                />
+
+                /*
+                //This is the video player from expo-av
+                <Video
+                    source={{uri: video}}
+                    style={{width: Dimensions.get('window').width, height: 248, borderRadius: 15, marginTop: 3}}
+                    isMuted={false}
+                    resizeMode={ResizeMode.CONTAIN}
+                    useNativeControls
+                    shouldPlay={true}
+                    onPlaybackStatusUpdate={status => {
+                        if (status.didJustFinish) {
+                            setPlay(false)
+                        }
+                    }}
+                />
+                 */
             ) : (
                 <TouchableOpacity
                     activeOpacity={0.7}

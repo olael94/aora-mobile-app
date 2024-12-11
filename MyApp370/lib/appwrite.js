@@ -43,7 +43,7 @@ export const createUser = async (email, password, username) => {
             username
         );
 
-        if(!newAccount) throw Error;
+        if (!newAccount) throw Error;
 
         const avatarUrl = avatars.getInitials(username);
 
@@ -69,7 +69,7 @@ export const createUser = async (email, password, username) => {
     }
 }
 
-export const signIn = async (email, password) =>{
+export const signIn = async (email, password) => {
     try {
         const session = await account.createEmailPasswordSession(email, password);
 
@@ -83,7 +83,7 @@ export const getCurrentUser = async () => {
     try {
         const currentAccount = await account.get();
 
-        if(!currentAccount) throw Error;
+        if (!currentAccount) throw Error;
 
         const currentUser = await databases.listDocuments(
             config.databaseId,
@@ -91,7 +91,7 @@ export const getCurrentUser = async () => {
             [Query.equal('accountId', currentAccount.$id)]
         );
 
-        if(!currentUser) throw Error;
+        if (!currentUser) throw Error;
         // This will return existing user
         return currentUser.documents[0];
     } catch (error) {
@@ -104,6 +104,20 @@ export const getAllPosts = async () => {
         const posts = await databases.listDocuments(
             databaseId,
             videoCollectionId
+        );
+
+        return posts.documents;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+export const getLatestPosts = async () => {
+    try {
+        const posts = await databases.listDocuments(
+            databaseId,
+            videoCollectionId,
+            [Query.orderDesc('$createdAt'), Query.limit(7)]
         );
 
         return posts.documents;
