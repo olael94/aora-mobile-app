@@ -2,6 +2,7 @@
   "name": "myapp370",
   "version": "1.0.0",
   "main": "expo-router/entry",
+  "private": true,
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -35,25 +36,25 @@
     "@babel/core": "^7.20.0"
   },
   "overrides": {
+    "react-dom": "19.1.0",
     "react-native-appwrite": {
       "react": "$react",
       "react-native": "$react-native",
       "expo-file-system": "19.0.22"
-    },
-    "private": true,
-    "expo": {
-      "doctor": {
-        "reactNativeDirectoryCheck": {
-          "exclude": [
-            "react-native-appwrite",
-            "expo-av",
-            "react-native-animatable",
-            "metro",
-            "metro-config",
-            "metro-resolver"
-          ],
-          "listUnknownPackages": false
-        }
+    }
+  },
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "exclude": [
+          "react-native-appwrite",
+          "expo-av",
+          "react-native-animatable",
+          "metro",
+          "metro-config",
+          "metro-resolver"
+        ],
+        "listUnknownPackages": false
       }
     }
   }
