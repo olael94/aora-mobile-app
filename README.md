@@ -2,7 +2,9 @@
 
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?logo=javascript&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![React](https://img.shields.io/badge/React-18.2.0-61DAFB?logo=react&logoColor=black)](https://reactjs.org/) [![React Native](https://img.shields.io/badge/React%20Native-0.81.5-61DAFB?logo=react&logoColor=black)](https://reactnative.dev/) [![Expo](https://img.shields.io/badge/Expo-54.0.0-1B1F23?logo=expo&logoColor=white)](https://expo.dev/)
 
-Aora is a mobile application designed to provide an intuitive user experience for managing various tasks within a cohesive interface. It leverages modern technologies to ensure efficient performance and a seamless deployment process. The application is built with a focus on user-centric design and responsive layouts, making it suitable for a wide range of mobile devices.
+Aora is a full-stack mobile video sharing app built with React Native and Expo. Users can create accounts, sign in, and browse an AI-generated video feed. The app features a trending videos section, bookmarks, a search screen, user profiles, and the ability to upload original video content. Built with Appwrite as the backend for authentication, database, and file storage, and styled with NativeWind (Tailwind CSS for React Native).
+
+Built as part of the [JavaScript Mastery React Native Course for Beginners](https://www.youtube.com/watch?v=ZBCUegTZF7M) for CS-370 Mobile Development at Ensign College. The code implementation had to be modified due to technologies discrepancies.
 
 ## Features
 - User authentication and authorization
@@ -41,28 +43,22 @@ Aora is a mobile application designed to provide an intuitive user experience fo
 
 3. **Start the development server:**
    ```bash
-   npm start
+   npx expo start -c
    ```
 
-4. **Run on your device:**
-   - For Android:
-     ```bash
-     npm run android
-     ```
-   - For iOS:
-     ```bash
-     npm run ios
-     ```
-   - For web:
-     ```bash
-     npm run web
-     ```
+4. **Download ExpoGo app:**
+   - Google Play (Android)
+     https://play.google.com/store/apps/details?id=host.exp.exponent
+   - App Store (iOS)
+     https://apps.apple.com/app/expo-go/id982107779
 
-5. **Configure environment variables:**
-   If any environment variables are needed, create a `.env` file in the root directory and define your variables there.
 
-6. **Running tests (if applicable):**
-   Currently, there are no defined test scripts in the package.json. You can add testing frameworks like Jest based on your requirements.
+5. **Scan the QR code with ExpoGo:**
+   Scan the QR code displayed in the terminal or browser to run the app on your mobile device.
+
+
+6. **Look for the Aora app loaded in the app:**
+   The app should now be installed and ready to use.
 
 ## Project Structure
 ```
@@ -80,11 +76,6 @@ context/                                 # Context API for state management
 lib/                                     # Utility functions and libraries
 package.json                             # Project manifest file
 ```
-
-## Environment Variables
-| Variable | Description | Required |
-|----------|-------------|----------|
-<!-- If no .env.example file is present, this section is skipped. -->
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
