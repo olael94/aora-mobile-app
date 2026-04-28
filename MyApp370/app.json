@@ -9,13 +9,13 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
       "supportsTablet": true,
-      "package": "com.or.aora"
+      "bundleIdentifier": "com.or.aora"
     },
     "android": {
       "adaptiveIcon": {
